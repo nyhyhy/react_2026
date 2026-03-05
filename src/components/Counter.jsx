@@ -1,6 +1,29 @@
-function Counter() {
-  return (
-    <button>Counter</button>
-  )
+// 함수 선언식: 일반적으로 사용 (상태, 로직)
+// function Counter() {
+//   return (
+//     <button>Counter</button>
+//   )
+// }
+// export default Counter;
+export default function Counter() {
+    return (
+        <button>Counter</button>
+    )
 }
-export default Counter;
+
+// 함수 표현식
+// const Counter = () => {
+//     return (
+//         <button>Counter</button>
+//     )
+// }
+// export default Counter;
+// export const Counter = () => {
+//     return (
+//         <button>Counter</button>
+//     )
+// }
+//UI를 담당하는 경우 함수 return 문이 없이 사용 가능
+// export const Counter = () => (
+//     <button>Counter</button>
+// )

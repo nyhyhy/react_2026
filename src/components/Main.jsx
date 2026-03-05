@@ -1,10 +1,10 @@
 import Counter from './Counter.jsx'
 
-function Main() {
+export default function Main() {
   return (
     <main>
       <Counter />
     </main>
   )
 }
-export default Main;
+//export default Main;
