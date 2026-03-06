@@ -1,4 +1,4 @@
-function HeartIconBtn({ifFavorite = false}) {
+function HeartIconBtn({onClick, isFavorite = false}) {
     // if(!ifFavorite) {
     //     return (
     //         <button className="btn">
@@ -12,15 +12,20 @@ function HeartIconBtn({ifFavorite = false}) {
     //     </button>
     // )
 
+    // function handleFavorite() {
+    //     alert(isFavorite ? '좋아요' : '모르겠어요');
+    // }
+
     return (
-        <button className="btn">
-            {/* {ifFavorite ? (
+        // <button className="btn" onClick={onClick}>
+        <button className="btn" onClick={(e) => onClick(e)}>
+            {/* {isFavorite ? (
                 <img className="icon-heart" src="/img/heart-fill-icon.svg" />
             ) : (
                 <img className="icon-heart" src="/img/heart-icon.svg" />
             )} */}
             {/* <img className="icon-heart" src={ifFavorite ? "/img/heart-fill-icon.svg" : "/img/heart-icon.svg"}  /> */}
-            <img className="btn__img" src={ifFavorite ? "/img/heart-fill-icon.svg" : "/img/heart-icon.svg"}  />
+            <img className="btn__img" src={isFavorite ? "/img/heart-fill-icon.svg" : "/img/heart-icon.svg"}  />
         </button>
     )
 }
@@ -33,7 +38,12 @@ function HeartIconBtn({ifFavorite = false}) {
     )
  }
 
-function CourseItem({ title, description, thumbnail, ifFavorite, link}) {
+function CourseItem({ title, description, thumbnail, isFavorite, link}) {
+
+    function handleFavorite(e) {
+        console.log(e);
+        alert(isFavorite ? '좋아요' : '모르겠어요');
+    }
 
     return (
         <article className="course">
@@ -43,7 +53,7 @@ function CourseItem({ title, description, thumbnail, ifFavorite, link}) {
                 <div className="course__description">{description}</div>
             </div>
             <div className="course__icons">
-                <HeartIconBtn ifFavorite={ifFavorite}></HeartIconBtn>
+                <HeartIconBtn isFavorite={isFavorite} onClick={handleFavorite}></HeartIconBtn>
                 { link && <LinkIconBtn link={link} />}
             </div>
         </article>
