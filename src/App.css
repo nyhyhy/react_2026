@@ -80,3 +80,11 @@ main {
 .btn > .fa-link {
     color: #393939;
 }
+
+.icon-heart {
+    width: 20px;
+    color: red;
+}
+.btn__img {
+    width: 20px;
+}
