@@ -42,11 +42,18 @@ function CourseItem({ title, description, thumbnail, isFavorite, link}) {
 
     function handleFavorite(e) {
         console.log(e);
+        e.stopPropagation();
         alert(isFavorite ? '좋아요' : '모르겠어요');
     }
 
+    function handleItemClick(e) {
+        e.stopPropagation();
+        //alert('item Click!');
+        open(link, '_blank');
+    }
+
     return (
-        <article className="course">
+        <article className="course" onClick={handleItemClick}>
             <img className="course__img" src={thumbnail} alt="img" />
             <div className="course__body">
                 <div className="course__title">{title}</div>

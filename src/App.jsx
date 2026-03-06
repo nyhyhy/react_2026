@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import AppCounter from './AppCounter'
 import CourseListCard from './components/course/CourseListCard'
+import CourseForm from './components/course/CourseForm'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -37,8 +38,9 @@ function App() {
   return (
     <>
       <main style={{flexDirection: 'column', gap:'1rem'}}>
+        <CourseForm></CourseForm>
         <CourseListCard title="강의 목록" items={items} />
-        <CourseListCard title="관심 강의 목록" items={favoriteItems} />
+        {/* <CourseListCard title="관심 강의 목록" items={favoriteItems} /> */}
       </main>
     </>
   )
