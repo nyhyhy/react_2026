@@ -15,9 +15,13 @@ export default function Counter({onTotal}) {
     //     console.log(counter);
     // }
     const [counter, setCounter] = useState(0);
+    
+    console.log('Counter>', counter);
     const handleCounter = () => {
         setCounter(counter + 1);
-        onTotal();
+        if(onTotal) {
+            onTotal();
+        }
     }
 
     return (
