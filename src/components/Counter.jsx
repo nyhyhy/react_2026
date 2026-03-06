@@ -4,10 +4,24 @@
 //     <button>Counter</button>
 //   )
 // }
+
+import { useState } from "react"
+
 // export default Counter;
-export default function Counter() {
+export default function Counter({onTotal}) {
+    // let counter = 1;
+    // const handleCounter = () => {
+    //     counter++;
+    //     console.log(counter);
+    // }
+    const [counter, setCounter] = useState(0);
+    const handleCounter = () => {
+        setCounter(counter + 1);
+        onTotal();
+    }
+
     return (
-        <button>Counter</button>
+        <button onClick={handleCounter}>Counter: {counter}</button>
     )
 }
 
