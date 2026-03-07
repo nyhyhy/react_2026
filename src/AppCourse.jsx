@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import './App.css'
+import './AppCourse.css'
 // import AppCounter from './AppCounter'
 import CourseListCard from './components/course/CourseListCard'
 import CourseForm from './components/course/CourseForm'
