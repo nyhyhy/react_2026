@@ -38,12 +38,13 @@ function HeartIconBtn({onClick, isFavorite = false}) {
     )
  }
 
-function CourseItem({ title, description, thumbnail, isFavorite, link}) {
+function CourseItem({ id, title, description, thumbnail, isFavorite, link, onFavorite}) {
 
     function handleFavorite(e) {
         console.log(e);
         e.stopPropagation();
-        alert(isFavorite ? '좋아요' : '모르겠어요');
+        //alert(isFavorite ? '좋아요' : '모르겠어요');
+        onFavorite(id, !isFavorite);
     }
 
     function handleItemClick(e) {
