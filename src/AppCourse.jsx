@@ -1,12 +1,13 @@
-import { useState } from 'react'
+//import { useState } from 'react'
+import { useImmer } from 'use-immer';
 import './AppCourse.css'
 // import AppCounter from './AppCounter'
 import CourseListCard from './components/course/CourseListCard'
 import CourseForm from './components/course/CourseForm'
 
 function App() {
-  const [count, setCount] = useState(0);
-  const [items, setItems] = useState([
+  //const [count, setCount] = useState(0);
+  const [items, updateItems] = useImmer([
     {
         id: 0,
         title: '입문자를 위한, HTML&CSS 웹 개발 입문',
@@ -34,17 +35,22 @@ function App() {
   ]);
 
   const handleFavoriteChange = (id, isFavorite) => {
-    const newItems = items.map(item => {
-      if(item.id === id) {
-        return {
-          ...item,
-          isFavorite
-        };
-      } else {
-        return item;
-      }
-    });
-    setItems(newItems);
+    // const newItems = items.map(item => {
+    //   if(item.id === id) {
+    //     return {
+    //       ...item,
+    //       isFavorite
+    //     };
+    //   } else {
+    //     return item;
+    //   }
+    // });
+    // setItems(newItems);
+    updateItems((draft) => {
+      const targetItem = draft.find(item => item.id === id);
+      targetItem.isFavorite = isFavorite;
+
+    })
   }
 
   const favoriteItems = items.filter(item => item.isFavorite);
