@@ -73,7 +73,7 @@ const AppTodo = () => {
     }
 
     const handleTodoKeyDown = (e) => {
-        if(e.key === 'Enter' && todoText !== '') {
+        if(e.key === 'Enter' && todoText !== '' && e.nativeEvent.isComposing === false) {
             handleAddTodo();
         }
     }
