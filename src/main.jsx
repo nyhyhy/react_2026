@@ -5,9 +5,9 @@ import './index.css'
 //import App from './AppCourse.jsx'
 //import App from './AppCounter.jsx'
 //import App from './AppPure.jsx'
-//import App from './AppTodo.jsx'
+import App from './AppTodo.jsx'
 //import App from './AppMovingDot.jsx'
-import App from './AppTheme.jsx'
+//import App from './AppTheme.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
