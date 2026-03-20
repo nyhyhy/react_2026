@@ -8,6 +8,7 @@ import './index.css'
 import App from './AppTodo.jsx'
 //import App from './AppMovingDot.jsx'
 //import App from './AppTheme.jsx'
+//import App from './AppEffect.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

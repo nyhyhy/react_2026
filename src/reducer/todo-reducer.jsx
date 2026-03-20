@@ -24,6 +24,10 @@ export default function todoReducer(draft, action) {
         case 'reverse' :{
             return draft.toReversed();
         }
+        case 'init': {
+            draft.push(...action.data)
+            break;
+        }
         default: {
             throw Error('알 수 없는 액션 type:' + action.type)
         }

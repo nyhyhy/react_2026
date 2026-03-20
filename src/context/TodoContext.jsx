@@ -1,4 +1,4 @@
-import { Children, createContext, useContext } from "react";
+import { Children, createContext, useContext, useEffect } from "react";
 import { useImmerReducer } from 'use-immer';
 import todoReducer from "../reducer/todo-reducer";
 
@@ -6,10 +6,33 @@ export const TodoContext = createContext(null); //todos
 export const TodoDispatchContext = createContext(null);  //dispatch
 
 export function TodoProvider({children}) {
+
     const [todos, dispatch] = useImmerReducer(todoReducer, [
         {id: 0, text: 'HTML&CSS 공부하기', done: false},
         {id: 1, text: '자바스크립트 공부하기', done: false}
     ]);
+
+    useEffect(() => {
+        fetch('data/todos.json')
+        .then((res) => res.json())
+        .then((data) => {
+            console.log('데이터 조회 성공');
+            dispatch({
+                type: 'init',
+                data: data
+            })
+            // data.map((item) => {
+            //     return dispatch({
+            //         type: 'add',
+            //         item: item
+            //     });
+            // })
+        });
+
+        return () => {
+            console.log('연결해제');
+        }
+    }, []);
 
     return (
         <TodoContext.Provider value={todos}>
