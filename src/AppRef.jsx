@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { forwardRef, useEffect, useRef, useState } from "react"
 
 let counter = 0;
 
@@ -27,7 +27,8 @@ function ButtonCounter() {
     )
 }
 
-function Form() {
+
+const MyForm = forwardRef((props, ref) => {
     const [form, setForm] = useState({
         title: "제목",
         author: "작성자",
@@ -77,8 +78,29 @@ function Form() {
         }
     }, []);
 
+    const [isChanged, setIsChanged] = useState(false);
+    const prevForm = useRef(null);
+
+    useEffect(() => {
+        //server api fetch
+        prevForm.current = { ...form };
+        console.log('formRef:', formRef);
+    }, []);
+
+    useEffect(() => {
+
+        const hasChanged = (
+            prevForm.current.title !== form.title ||
+            prevForm.current.author !== form.author ||
+            prevForm.current.content !== form.content
+        );
+
+        setIsChanged(hasChanged);
+    }, [form]);
+
+    const formRef = useRef(null);
     return (
-        <form onSubmit={handleSubmit}>
+        <form ref={ref} onSubmit={handleSubmit}>
             <fieldset>
                 <legend>글쓰기</legend>
                 <input ref={titleInputRef} value={form.title} onChange={handleForm} name="title" placeholder="제목" />
@@ -87,13 +109,19 @@ function Form() {
                 <hr />
                 <textarea ref={contentInputRef} value={form.content} onChange={handleForm} name="content" placeholder="내용" />
                 <hr />
-                <button>전송</button>
+                <button disabled={!isChanged}>전송</button>
             </fieldset>
         </form>
     )
-}
+});
 
 export default function AppRef() {
+
+    const myFormRef = useRef(null);
+
+    useEffect(() => {
+        console.log('myFormRef:', myFormRef);
+    }, []);
 
     return (
         <>
@@ -102,7 +130,7 @@ export default function AppRef() {
             <hr />
             <ButtonCounter />
             <h2>Form</h2>
-            <Form />
+            <MyForm ref={myFormRef}/>
         </>
     )
 }
